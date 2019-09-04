@@ -1,5 +1,4 @@
 # https://leetcode.com/problems/add-two-numbers/
-# Definition for singly-linked list.
 
 class Node(object):
     def __init__(self, data):
