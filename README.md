@@ -1,2 +1,3 @@
 # leetcode
-# All the solutions to the leet code exercises done
+
+All the solutions to the leet code exercises done
