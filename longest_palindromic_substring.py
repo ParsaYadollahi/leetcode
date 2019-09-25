@@ -1,13 +1,12 @@
 '''
 https://leetcode.com/problems/longest-palindromic-substring/
-''''
+'''
 class Solution(object):
     def longestPalindrome(self, s):
         """
         :type s: str
         :rtype: str
         """
-        s_list = list(s)
         if not s:
             return ''
         longest_sub = s[0]
@@ -24,7 +23,8 @@ class Solution(object):
                     longest_sub = temp_sub
                     
         for index in range(1, len(s)-1):
-                low = index+1
+                high = index+1
+                low = index-1
                 while high < len(s) and low >= 0 and s[low] == s[high]:
                     temp_sub = s[low:high+1]
                     high += 1
@@ -33,3 +33,4 @@ class Solution(object):
                     longest_sub = temp_sub
             
         return longest_sub
+
