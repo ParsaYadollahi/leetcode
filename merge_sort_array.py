@@ -10,6 +10,8 @@ class Solution(object):
         :type n: int
         :rtype: None Do not return anything, modify nums1 in-place instead.
         """
+        # think of it as reverse merge sort. Add biggest element in
+        # between both elements to the back of nums1
         if n == 0:
             return
         m-=1
