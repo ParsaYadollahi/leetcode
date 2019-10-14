@@ -1,3 +1,6 @@
+'''
+https://leetcode.com/problems/generate-parentheses/
+'''
 class Solution(object):
     def generateParenthesis(self, n):
         """
