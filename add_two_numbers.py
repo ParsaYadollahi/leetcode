@@ -20,6 +20,7 @@ class Solution(object):
                 carry = 1
             else:
                 carry = 0
+
             l3.next = ListNode(sum % 10)
             l1, l2, l3 = l1.next, l2.next, l3.next
 
