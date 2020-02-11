@@ -1,3 +1,6 @@
+'''
+    https://leetcode.com/explore/interview/card/microsoft/32/linked-list/170/
+'''
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
@@ -5,37 +8,43 @@
 #         self.next = None
 
 
-class Solution(object):
-    def addTwoNumbers(self, l1, l2):
-        """
-        :type l1: ListNode
-        :type l2: ListNode
-        :rtype: ListNode
-        """
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         carry = 0
-        head = l3 = ListNode(None)
-        while l1 and l2:
-            sum = carry+l1.val+l2.val
-            if sum >= 10:
-                carry = 1
-            else:
-                carry = 0
+        sum = l1.val + l2.val + carry
+        carry = sum//10
+        sum = sum % 10
 
-            l3.next = ListNode(sum % 10)
-            l1, l2, l3 = l1.next, l2.next, l3.next
+        prev = ListNode(sum)
+        l1, l2 = l1.next, l2.next
+        head = prev
+        new_node = ListNode(0)
 
-        while l1:
-            sum = carry+l1.val
-            carry = 1 if sum >= 10 else 0
-            l3.next = ListNode(sum % 10)
-            l1, l3 = l1.next, l3.next
+        while(l1 != None and l2 != None):
+            sum = l1.val + l2.val + carry
+            carry = sum//10
+            sum = sum % 10
 
-        while l2:
-            sum = carry+l2.val
-            carry = 1 if sum >= 10 else 0
-            l3.next = ListNode(sum % 10)
-            l2, l3 = l2.next, l3.next
+            new_node = ListNode(sum)
+            prev.next = new_node
 
-        l3.next = ListNode(carry) if carry else None
+            prev = new_node
+            l1, l2 = l1.next, l2.next
 
-        return head.next
+        if l1 == None and l2 != None:
+            while(l2 != None):
+                sum = (l2.val+carry)
+                prev.next = ListNode(sum % 10)
+                carry = sum//10
+                l2, prev = l2.next, prev.next
+                print(carry)
+        if l2 == None and l1 != None:
+            while(l1 != None):
+                sum = (l1.val+carry)
+                prev.next = ListNode(sum % 10)
+                carry = sum//10
+                l1, prev = l1.next, prev.next
+
+        prev.next = ListNode(carry) if carry else None
+
+        return head
