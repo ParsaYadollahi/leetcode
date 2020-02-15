@@ -5,17 +5,20 @@
 
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        row = len(matrix) - 1
-        col = 0
-        # Start at bottom left of matrix
-        while (row >= 0 and col <= len(matrix[0])-1):
+        if len(matrix) == 0:
+            return False
+        m, n = len(matrix), len(matrix[0])
 
-            # Found target
-            if matrix[row][col] == target:
+        left = 0  # aim for first element in entire 2d array
+        right = m * n - 1  # aim for last element in entire 2d array
+
+        while left <= right:
+            mid = (left + right) // 2
+            if matrix[mid // n][mid % n] == target:
                 return True
-
-            if matrix[row][col] > target:
-                row -= 1
-            if matrix[row][col] < target:
-                col += 1
+            else:
+                if matrix[mid // n][mid % n] < target:
+                    left = mid + 1
+                else:
+                    right = mid - 1
         return False
