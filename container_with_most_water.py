@@ -41,7 +41,7 @@ class Solution2(object):
         right = len(height)-1
 
         while left != right:
-            
+
             if height[right] < height[left]:
                 y_diff = height[right]
             else:
@@ -50,9 +50,28 @@ class Solution2(object):
 
             if max_container < temp_container:
                 max_container = temp_container
-            
+
             if height[right] > height[left]:
                 left += 1
             else:
                 right -= 1
+        return max_container
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        max_container = 0
+        temp_container = 0
+        left, right = 0, len(height) - 1
+
+        while(left < right):
+            temp_container = min(height[left], height[right]) * (right - left)
+
+            if temp_container > max_container:
+                max_container = temp_container
+
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+
         return max_container
